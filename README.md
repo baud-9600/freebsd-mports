@@ -7,9 +7,9 @@ FreeBSD ports overlay used by the Sylve jails on `srv01`.
 | Origin | Version | Notes |
 | --- | --- | --- |
 | `audio/beets` | 2.12.0 | |
-| `comms/zigbee2mqtt` | 2.14.0 | ships the node_modules tarball in the port |
+| `comms/zigbee2mqtt` | 2.14.0_1 | ships an npm cache tarball with FreeBSD serialport bindings; origin is expired in the main tree |
 | `databases/redisbloom` | 2.8.3 | |
-| `dns/technitium` | 15.6.2 | new port; .NET 10 (`lang/dotnet`), installs to `/opt/technitium` |
+| `dns/technitium` | 15.6.2 | new port; .NET 10 (`lang/dotnet`), installs to `/usr/local/technitium` |
 | `multimedia/jellyfin` | 10.11.11 | |
 | `net-im/signal-cli` | 0.14.7 | |
 | `net-p2p/slskd` | 0.26.2 | .NET 10, self-contained single-file build |
@@ -19,6 +19,12 @@ FreeBSD ports overlay used by the Sylve jails on `srv01`.
 
 `filesystems/zfstools` was not imported: it only contains a patch fragment and
 no `Makefile`, so it is not a usable port on its own.
+
+The `comms/zigbee2mqtt` origin is marked expired in the main tree (it used to
+depend on `www/node20`). The overlay port uses Node 24 and the installed
+2.14.0_1 package is working, so the port is kept for reference/upgrades. When
+bumping it, regenerate the npm cache tarball on FreeBSD (the `serialport`
+bindings are platform-specific).
 
 ## Building with poudriere
 
@@ -48,7 +54,7 @@ added to the host's `passwd`/`group` databases.
 
 ## Technitium
 
-The port installs the application into `/opt/technitium`; configuration, zones
+The port installs the application into `/usr/local/technitium`; configuration, zones
 and cache live in `/var/db/technitium`. The web console listens on port 5380 and
 the DNS service on port 53.
 

@@ -9,7 +9,7 @@
 # technitium_enable:     Set to YES to enable Technitium DNS Server.
 # technitium_user:       User to run as (default: root).
 # technitium_group:      Group to run as (default: wheel).
-# technitium_dir:        Application directory (default: /opt/technitium).
+# technitium_dir:        Application directory (default: /usr/local/technitium).
 # technitium_data_dir:   Configuration/data directory (default: /var/db/technitium).
 # technitium_flags:      Additional arguments for DnsServerApp.dll.
 
@@ -23,7 +23,7 @@ load_rc_config ${name}
 : ${technitium_enable:="NO"}
 : ${technitium_user:="root"}
 : ${technitium_group:="wheel"}
-: ${technitium_dir:="/opt/technitium"}
+: ${technitium_dir:="/usr/local/technitium"}
 : ${technitium_data_dir:="/var/db/technitium"}
 : ${technitium_flags:=""}
 

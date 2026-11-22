@@ -1,4 +1,4 @@
-Technitium DNS Server is installed in /opt/technitium.
+Technitium DNS Server is installed in /usr/local/technitium.
 
 To enable and start the service:
 
