@@ -2,29 +2,23 @@
 
 FreeBSD ports overlay used by the Sylve jails on `srv01`.
 
-## Ports
+## Ports in this overlay
 
 | Origin | Version | Notes |
 | --- | --- | --- |
-| `audio/beets` | 2.12.0 | |
-| `comms/zigbee2mqtt` | 2.14.0_1 | ships an npm cache tarball with FreeBSD serialport bindings; origin is expired in the main tree |
-| `databases/redisbloom` | 2.8.3 | |
-| `dns/technitium` | 15.6.2 | new port; .NET 10 (`lang/dotnet`), installs to `/usr/local/technitium` |
-| `multimedia/jellyfin` | 10.11.11 | |
-| `net-im/signal-cli` | 0.14.7 | |
-| `net-p2p/slskd` | 0.26.2 | .NET 10, self-contained single-file build |
-| `sysutils/anytype` | 1.4.3-2026-04-21 | |
+| `dns/technitium` | 15.6.2_1 | .NET 10 (`lang/dotnet`); `/usr/local/technitium`, data in `/var/db/technitium` |
+| `net-p2p/slskd` | 0.26.2_1 | .NET 10, self-contained single-file build; fixed rc.d script |
+| `sysutils/anytype` | 1.4.3-2026-04-21 | self-hosted Anytype sync server |
 | `sysutils/grub2-bhyve` | | overlay patch for the port in the main tree |
-| `www/opodsync` | 0.5.3 | |
+| `www/opodsync` | 0.5.3 | minimalist GPodder-compatible podcast sync server |
+| `comms/zigbee2mqtt` | 2.14.0_1 | WIP: the main-tree origin is expired; it uses Node 24 and a FreeBSD-specific npm cache |
+
+The following ports are in the main tree and are **not** duplicated in this
+overlay: `audio/beets`, `databases/redisbloom`, `multimedia/jellyfin`,
+`net-im/signal-cli`.
 
 `filesystems/zfstools` was not imported: it only contains a patch fragment and
 no `Makefile`, so it is not a usable port on its own.
-
-The `comms/zigbee2mqtt` origin is marked expired in the main tree (it used to
-depend on `www/node20`). The overlay port uses Node 24 and the installed
-2.14.0_1 package is working, so the port is kept for reference/upgrades. When
-bumping it, regenerate the npm cache tarball on FreeBSD (the `serialport`
-bindings are platform-specific).
 
 ## Building with poudriere
 
@@ -37,7 +31,7 @@ poudriere ports -c -p overlay -m null -M /usr/mports
 Then build ports in the normal tree with the overlay applied:
 
 ```sh
-poudriere bulk -j freebsd_15-1x64 -p HEAD -O overlay -z defaultopts dns/technitium net-p2p/slskd
+poudriere bulk -j freebsd_15-1x64 -p HEAD -O overlay -z defaultopts -f /usr/local/etc/poudriere.d/port-list
 ```
 
 The `defaultopts` set is optional. It is useful when the official package
@@ -54,11 +48,19 @@ added to the host's `passwd`/`group` databases.
 
 ## Technitium
 
-The port installs the application into `/usr/local/technitium`; configuration, zones
-and cache live in `/var/db/technitium`. The web console listens on port 5380 and
-the DNS service on port 53.
+The port installs the application into `/usr/local/technitium`; configuration,
+zones and cache live in `/var/db/technitium`. The web console listens on port
+5380 and the DNS service on port 53.
 
 ```sh
 sysrc technitium_enable=YES
 service technitium start
 ```
+
+## zigbee2mqtt caveat
+
+The `comms/zigbee2mqtt` origin is marked expired in the main tree (it used to
+depend on `www/node20`). The overlay port uses Node 24 and the installed
+2.14.0_1 package is working, so the port is kept as WIP. When bumping it,
+regenerate the npm cache tarball on FreeBSD: `serialport/bindings-cpp` is
+platform-specific.
