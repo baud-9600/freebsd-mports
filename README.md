@@ -20,6 +20,12 @@ overlay: `databases/redisbloom`, `multimedia/jellyfin`, `net-im/signal-cli`.
 `filesystems/zfstools` was not imported: it only contains a patch fragment and
 no `Makefile`, so it is not a usable port on its own.
 
+## Related repositories
+
+The `net-p2p/slskd` port is also maintained in the separate
+[baud-9600/slskd-port](https://github.com/baud-9600/slskd-port) repository.
+This overlay includes a copy so that the mports overlay is self-contained.
+
 ## Building with poudriere
 
 Register the overlay as a null ports tree:
