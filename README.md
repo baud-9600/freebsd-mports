@@ -1,4 +1,4 @@
-# mports
+# freebsd-mports
 
 FreeBSD ports overlay used by the Sylve jails on `srv01`.
 
