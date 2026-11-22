@@ -1,0 +1,14 @@
+Technitium DNS Server is installed in /opt/technitium.
+
+To enable and start the service:
+
+  sysrc technitium_enable=YES
+  service technitium start
+
+Web UI:
+
+  http://<host>:5380
+
+Configuration and data:
+
+  /var/db/technitium

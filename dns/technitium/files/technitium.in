@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# PROVIDE: technitium
+# REQUIRE: NETWORKING
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf to configure the service:
+#
+# technitium_enable:     Set to YES to enable Technitium DNS Server.
+# technitium_user:       User to run as (default: root).
+# technitium_group:      Group to run as (default: wheel).
+# technitium_dir:        Application directory (default: /opt/technitium).
+# technitium_data_dir:   Configuration/data directory (default: /var/db/technitium).
+# technitium_flags:      Additional arguments for DnsServerApp.dll.
+
+. /etc/rc.subr
+
+name="technitium"
+rcvar="technitium_enable"
+
+load_rc_config ${name}
+
+: ${technitium_enable:="NO"}
+: ${technitium_user:="root"}
+: ${technitium_group:="wheel"}
+: ${technitium_dir:="/opt/technitium"}
+: ${technitium_data_dir:="/var/db/technitium"}
+: ${technitium_flags:=""}
+
+pidfile="/var/run/${name}.pid"
+logfile="/var/log/${name}.log"
+procname="/usr/local/bin/dotnet"
+command="/usr/sbin/daemon"
+command_args="-f -p ${pidfile} -o ${logfile} -u ${technitium_user} ${procname} ${technitium_dir}/DnsServerApp.dll ${technitium_data_dir} ${technitium_flags}"
+
+start_precmd="technitium_precmd"
+
+technitium_precmd()
+{
+    install -d -m 0755 -o "${technitium_user}" -g "${technitium_group}" "${technitium_data_dir}"
+    cd "${technitium_dir}" || return 1
+}
+
+run_rc_command "$1"

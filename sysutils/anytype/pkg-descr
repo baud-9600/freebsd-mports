@@ -1,0 +1,8 @@
+any-sync-bundle is a prepackaged, all-in-one self-hosted server for Anytype,
+a local-first privacy-focused alternative to Notion. It merges all official
+Anytype sync modules (coordinator, consensus, filenode, sync) into a single
+binary for simplified deployment.
+
+Requires: MongoDB (with replica set), Redis (with RedisBloom module).
+
+WWW: https://github.com/grishy/any-sync-bundle

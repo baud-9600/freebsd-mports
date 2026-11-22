@@ -1,0 +1,25 @@
+--- /usr/ports/work/usr/ports/sysutils/grub2-bhyve/work/grub2-bhyve-0.40/grub-core/fs/ext2.c.orig	2015-09-01 00:42:56.000000000 +0200
++++ /usr/ports/work/usr/ports/sysutils/grub2-bhyve/work/grub2-bhyve-0.40/grub-core/fs/ext2.c	2026-04-10 15:48:15.835209000 +0200
+@@ -100,7 +100,10 @@
+ #define EXT2_FEATURE_INCOMPAT_META_BG		0x0010
+ #define EXT4_FEATURE_INCOMPAT_EXTENTS		0x0040 /* Extents used */
+ #define EXT4_FEATURE_INCOMPAT_64BIT		0x0080
++#define EXT4_FEATURE_INCOMPAT_MMP		0x0100
+ #define EXT4_FEATURE_INCOMPAT_FLEX_BG		0x0200
++#define EXT4_FEATURE_INCOMPAT_CSUM_SEED		0x2000
++#define EXT4_FEATURE_INCOMPAT_LARGEDIR		0x4000
+ 
+ /* The set of back-incompatible features this driver DOES support. Add (OR)
+  * flags here as the related features are implemented into the driver.  */
+@@ -115,7 +118,10 @@
+  *                 ext3 driver to mount the volume will find the journal and
+  *                 replay it, potentially corrupting the metadata written by
+  *                 the ext2 drivers. Safe to ignore for this RO driver.  */
+-#define EXT2_DRIVER_IGNORED_INCOMPAT ( EXT3_FEATURE_INCOMPAT_RECOVER )
++#define EXT2_DRIVER_IGNORED_INCOMPAT ( EXT3_FEATURE_INCOMPAT_RECOVER \
++                                      | EXT4_FEATURE_INCOMPAT_MMP \
++                                      | EXT4_FEATURE_INCOMPAT_CSUM_SEED \
++                                      | EXT4_FEATURE_INCOMPAT_LARGEDIR)
+ 
+ 
+ #define EXT3_JOURNAL_MAGIC_NUMBER	0xc03b3998U

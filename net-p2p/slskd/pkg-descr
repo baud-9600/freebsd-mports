@@ -1,0 +1,9 @@
+A modern client-server application for the Soulseek file sharing network.
+
+  * .NET backend with React frontend
+  * Secure webui + API
+  * Prometheus metrics endpoint
+  * Event manager + webhooks and custom scripts
+  * FTP uploading
+  * Pushbullet notifications
+  * Relay mode for multi-instance deployments

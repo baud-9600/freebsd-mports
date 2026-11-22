@@ -1,0 +1,40 @@
+www/opodsync/.htaccess
+www/opodsync/_inc.php
+www/opodsync/feed.php
+www/opodsync/icon.svg
+www/opodsync/index.php
+www/opodsync/lib/KD2/ErrorManager.php
+www/opodsync/lib/KD2/Smartyer.php
+www/opodsync/lib/OPodSync/API.php
+www/opodsync/lib/OPodSync/APIException.php
+www/opodsync/lib/OPodSync/DB.php
+www/opodsync/lib/OPodSync/Feed.php
+www/opodsync/lib/OPodSync/GPodder.php
+www/opodsync/lib/OPodSync/Utils.php
+www/opodsync/login.php
+www/opodsync/register.php
+www/opodsync/sql/migration_20240428.sql
+www/opodsync/sql/migration_20250125.sql
+www/opodsync/sql/migration_20251211.sql
+www/opodsync/sql/schema.sql
+www/opodsync/style.css
+www/opodsync/subscriptions.php
+www/opodsync/templates/_foot.tpl
+www/opodsync/templates/_head.tpl
+www/opodsync/templates/error.tpl
+www/opodsync/templates/feed.tpl
+www/opodsync/templates/index.tpl
+www/opodsync/templates/index_logged.tpl
+www/opodsync/templates/login.tpl
+www/opodsync/templates/register.tpl
+www/opodsync/templates/subscriptions.tpl
+www/opodsync/templates/update.tpl
+www/opodsync/update.php
+www/opodsync/config.dist.php
+@owner www
+@group www
+@mode 750
+@dir www/opodsync/data
+@owner root
+@group wheel
+@mode 755

@@ -1,0 +1,9 @@
+oPodSync is a minimalist self-hosted podcast synchronization server,
+compatible with the GPodder and NextCloud gPodder Sync APIs.
+
+It allows tracking which podcast episodes have been listened to and
+syncing subscriptions across devices. Requires PHP 7.4+ and SQLite3.
+
+Compatible clients include AntennaPod, gPodder, and Kasts.
+
+WWW: https://github.com/kd2org/opodsync

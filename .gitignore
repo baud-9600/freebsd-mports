@@ -1,0 +1,5 @@
+.pnpm-store/
+work/
+*.bak
+*.sedbak
+*.orig

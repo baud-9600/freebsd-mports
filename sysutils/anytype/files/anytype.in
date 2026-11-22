@@ -1,0 +1,49 @@
+#!/bin/sh
+# PROVIDE: any-sync-bundle
+# REQUIRE: NETWORKING mongod redis
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name="anytype"
+rcvar="anytype_enable"
+pidfile="/var/run/${name}.pid"
+logfile="/var/log/${name}.log"
+
+start_cmd="${name}_start"
+stop_cmd="${name}_stop"
+status_cmd="${name}_status"
+
+anytype_start()
+{
+    echo "Starting ${name}."
+    /usr/sbin/daemon -p ${pidfile} -o ${logfile} \
+        %%PREFIX%%/bin/any-sync-bundle start-bundle \
+        --bundle-config /var/db/anytype/data/bundle-config.yml \
+        --client-config /var/db/anytype/data/client-config.yml
+}
+
+anytype_stop()
+{
+    if [ -f ${pidfile} ]; then
+        echo "Stopping ${name}."
+        kill $(cat ${pidfile})
+        rm -f ${pidfile}
+    else
+        echo "${name} not running."
+    fi
+}
+
+anytype_status()
+{
+    if [ -f ${pidfile} ] && kill -0 $(cat ${pidfile}) 2>/dev/null; then
+        echo "${name} is running as pid $(cat ${pidfile})."
+    else
+        echo "${name} is not running."
+    fi
+}
+
+load_rc_config $name
+: ${anytype_enable:=no}
+
+run_rc_command "$1"

@@ -1,0 +1,10 @@
+--- deps/t-digest-c/src/CMakeLists.txt.orig
++++ deps/t-digest-c/src/CMakeLists.txt
+@@ -12,6 +12,7 @@
+ if (BUILD_STATIC) 
+     add_library(tdigest_static STATIC ${c_files} ${header_files}) 
+     target_link_libraries(tdigest_static m)
++    target_compile_options(tdigest_static PRIVATE -Wno-implicit-function-declaration)
+     target_include_directories(tdigest_static SYSTEM PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+     set_target_properties(tdigest_static PROPERTIES PUBLIC_HEADER "${header_files}")
+     install(TARGETS tdigest_static DESTINATION lib${LIB_SUFFIX} PUBLIC_HEADER DESTINATION include)
