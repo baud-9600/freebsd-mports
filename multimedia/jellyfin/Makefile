@@ -1,6 +1,6 @@
 PORTNAME=	jellyfin
 DISTVERSION=	12.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
 EXTRACT_ONLY+=	${PORTNAME}-${PORTNAME}-${GH_TAGNAME}_GH0.tar.gz \
 		${PORTNAME}-${PORTNAME}-web-${GH_TAGNAME}_GH0.tar.gz
@@ -23,7 +23,7 @@ RUN_DEPENDS=	ca_root_nss>0:security/ca_root_nss \
 		icu>0:devel/icu \
 		krb5>0:security/krb5 \
 		libinotify>0:devel/libinotify \
-		libunwind-devel:devel/libunwind-devel \
+		lib/libunwind.so.11:devel/libunwind-devel \
 		mediainfo>0:multimedia/mediainfo
 TEST_DEPENDS=	npm:www/npm${NODEJS_SUFFIX} \
 		dotnet:lang/dotnet
