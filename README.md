@@ -8,6 +8,7 @@ FreeBSD ports overlay used by the Sylve jails on `srv01`.
 | --- | --- | --- |
 | `audio/beets` | 2.12.0_2 | overlay fix: adds `www/py-requests-ratelimiter` for the MusicBrainz plugin |
 | `dns/technitium` | 15.6.2_1 | .NET 10 (`lang/dotnet`); `/usr/local/technitium`, data in `/var/db/technitium` |
+| `multimedia/jellyfin` | 12.4_1 | overlay fix: match `libunwind-devel` by name (the `g…` package version does not satisfy `>0`) |
 | `net-p2p/slskd` | 0.26.2_1 | .NET 10, self-contained single-file build; fixed rc.d script |
 | `sysutils/anytype` | 1.4.3-2026-04-21 | self-hosted Anytype sync server |
 | `sysutils/grub2-bhyve` | | overlay patch for the port in the main tree |
@@ -15,7 +16,7 @@ FreeBSD ports overlay used by the Sylve jails on `srv01`.
 | `comms/zigbee2mqtt` | 2.14.0_1 | WIP: the main-tree origin is expired; it uses Node 24 and a FreeBSD-specific npm cache |
 
 The following ports are in the main tree and are **not** duplicated in this
-overlay: `databases/redisbloom`, `multimedia/jellyfin`, `net-im/signal-cli`.
+overlay: `databases/redisbloom`, `net-im/signal-cli`.
 
 `filesystems/zfstools` was not imported: it only contains a patch fragment and
 no `Makefile`, so it is not a usable port on its own.
