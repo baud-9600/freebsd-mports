@@ -1,0 +1,12 @@
+TypeRelay is a self-hosted, open-source relay service that lets you
+use your own messaging apps (WhatsApp, Telegram, Signal, etc.) from a
+unified web interface.
+
+This port installs the server component (apps/server) only: an Express-based
+Node.js/TypeScript application that provides the web app and API backed by
+MongoDB, plus memcached for caching.
+
+It excludes the Rust TUI/expand engine, the Tauri desktop app, the MCP
+adapter, and mobile components.
+
+WWW: https://typerelay.com

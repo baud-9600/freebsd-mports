@@ -1,0 +1,43 @@
+#!/bin/sh
+#
+# PROVIDE: typerelay-server
+# REQUIRE: LOGIN mongod memcached
+# KEYWORD: shutdown_order
+#
+# Add the following line to your /etc/rc.conf to enable typerelay-server:
+#   typerelay_server_enable=YES
+#
+# Optional settings (in /etc/rc.conf or the env file):
+#   typerelay_server_env_file   - path to env file (default: /usr/local/etc/typerelay-server.env)
+#   typerelay_server_user       - user to run as (default: root)
+#   typerelay_server_start_mode - "web" (default) or "scheduler"
+
+: ${typerelay_server_enable:=no}
+
+command="/usr/local/bin/node"
+name="typerelay-server"
+pidfile="/var/run/typerelay-server.pid"
+
+: ${typerelay_server_env_file:=/usr/local/etc/typerelay-server.env}
+: ${typerelay_server_user:=root}
+: ${typerelay_server_start_mode:=web}
+
+env_file="${typerelay_server_env_file}"
+
+start_precmd() {
+	case "${typerelay_server_start_mode}" in
+		scheduler)
+			export SERVER_MODE="scheduler"
+			;;
+		*)
+			unset SERVER_MODE
+			;;
+	esac
+}
+
+command_args="--disable-warning=ExperimentalWarning --import @typerelay/observability/register scripts/start.js"
+
+# Run from the install prefix
+cwd="/usr/local/typerelay-server/apps/server"
+
+. /etc/rc.subr

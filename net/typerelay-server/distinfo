@@ -1,0 +1,6 @@
+# $FreeBSD$
+# SHA256 and size of the source tarball.
+# Populated from:
+#   https://github.com/typerelay/typerelay/archive/refs/heads/develop.tar.gz
+SHA256(typerelay-typerelay-0.6.0-develop.tar.gz)= 2b011d076fe73548da5ca271462449f77e4bc523877be728c99af3df49bf03de
+SIZE(typerelay-typerelay-0.6.0-develop.tar.gz)= 4467844

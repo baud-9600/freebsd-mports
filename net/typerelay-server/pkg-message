@@ -1,0 +1,26 @@
+Thank you for installing typerelay-server.
+
+This is a self-hosted deployment. Do NOT set TYPERELAY_HOSTED_EDITION=true
+or BILLING_ENABLED=true; those are for the SaaS/cloud service only.
+
+Required services:
+  - MongoDB  (MONGO_URI)
+  - Memcached (MEMCACHED_SERVERS)
+
+Configuration:
+  Copy the sample env file and adjust:
+      cp ${ETCDIR}/typerelay-server.env /usr/local/etc/typerelay-server.env
+      # then edit /usr/local/etc/typerelay-server.env
+
+  Key variables (see .env.example):
+      MONGO_URI, MEMCACHED_SERVERS, PORT (default 3000), APP_URL,
+      API_BASE_URL, MCP_BASE_URL, API_ALLOWED_ORIGINS, MCP_ALLOWED_ORIGINS,
+      JWT_SECRET
+
+Optional:
+  - Stripe billing (Stripe keys, webhook secret) if enabling billing
+  - SAML (node-saml) for enterprise authentication
+
+Service:
+  Enable with:  sysrc typerelay_server_enable=YES
+  Start with:   service typerelay-server start
