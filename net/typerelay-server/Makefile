@@ -1,9 +1,9 @@
 PORTNAME=	typerelay-server
 PORTVERSION=	0.6.0
 PORTREVISION=	1
-PORTCAT=	server
+PORTCAT=	net
 
-MAINTAINER=	typerelay@example.com
+MAINTAINER=	mk@asdfghasdfgh.de
 COMMENT=	TypeRelay server component - Express-based self-hosted web app and API with MongoDB
 
 LICENSE=	AGPL-3.0-only
